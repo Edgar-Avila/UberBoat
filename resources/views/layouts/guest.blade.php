@@ -49,7 +49,7 @@
                 </label>
             </div>
         </div>
-        <div class="flex-grow">
+        <div class="flex flex-col flex-grow">
             @yield('content')
         </div>
     </div>

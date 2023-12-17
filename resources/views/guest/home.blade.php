@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="hero min-h-screen" style="background-image: url({{ asset('img/hero.webp') }});">
+    <div class="hero flex-grow" style="background-image: url({{ asset('img/hero.webp') }});">
         <div class="hero-overlay bg-opacity-60"></div>
         <div class="hero-content text-center text-neutral-content">
             <div class="max-w-md text-white">

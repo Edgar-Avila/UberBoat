@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <form action="{{ route('register') }}" method="POST" class="max-w-md mx-auto py-12 px-2">
+    <form action="{{ route('register') }}" method="POST" class="max-w-md mx-auto w-full py-12 px-4">
         @csrf
         <h1 class="text-4xl text-center font-bold mb-2">Registrarse</h1>
 
