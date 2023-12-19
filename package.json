@@ -1,5 +1,6 @@
 {
     "private": true,
+    "name": "uberboat",
     "type": "module",
     "scripts": {
         "dev": "vite",

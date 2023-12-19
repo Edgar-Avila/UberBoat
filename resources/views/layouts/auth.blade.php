@@ -19,7 +19,7 @@
                     </ul>
                 </div>
                 <div class="flex-1">
-                    <a class="btn btn-ghost text-xl" href="{{ route('home') }}">Boat Here</a>
+                    <a class="btn btn-ghost text-xl" href="{{ route('home') }}">UberBoat</a>
                 </div>
             </div>
             <div class="navbar-end flex-none">
