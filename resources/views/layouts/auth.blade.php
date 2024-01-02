@@ -13,19 +13,17 @@
                         </svg>
                     </div>
                     <ul tabindex="0"
-                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a href="{{ route('register') }}">Registrarse</a></li>
-                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                        class="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a href="{{ route('profile') }}">Perfil</a></li>
                     </ul>
                 </div>
                 <div class="flex-1">
-                    <a class="btn btn-ghost text-xl" href="{{ route('home') }}">UberBoat</a>
+                    <a class="btn btn-ghost text-xl" href="{{ route('map') }}">UberBoat</a>
                 </div>
             </div>
             <div class="navbar-end flex-none">
                 <ul class="menu menu-horizontal px-1 hidden sm:flex">
-                    <li><a href="{{ route('register') }}">Registrarse</a></li>
-                    <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                    <li><a href="{{ route('profile') }}">Perfil</a></li>
                 </ul>
                 <div class="flex gap-2">
                     <form action="{{ route('theme') }}" method="POST" class="flex items-center">

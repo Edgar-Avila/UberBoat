@@ -8,9 +8,7 @@
 
     <title>UberBoat</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @vite('resources/css/app.css')
     @stack('styles')
@@ -19,6 +17,18 @@
 <body class="antialiased">
     @yield('body')
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(Session::has('swal-msg') || Session::has('swal-title'))
+    <script>
+        Swal.fire({
+            icon: '{{ Session::has('swal-icon') ? Session::get('swal-icon') : 'success' }}',
+            title: '{{ Session::has('swal-title') ? Session::get('swal-title') : '' }}',
+            text: '{{ Session::has('swal-msg') ? Session::get('swal-msg') : '' }}',
+            confirmButtonText: 'Aceptar'
+        })
+    </script>
+@endif
 @stack('scripts')
 
 </html>

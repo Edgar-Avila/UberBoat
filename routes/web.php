@@ -30,4 +30,6 @@ Route::post('/tema', [ThemeController::class, 'toggleTheme'])->name('theme');
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/cerrar-sesion',[AuthController::class, 'logout'])->name('logout');
     Route::get('/mapa', [MapController::class, 'index'])->name('map');
+    Route::get('/perfil', [AuthController::class, 'profile'])->name('profile');
+    Route::put('/perfil/editar', [AuthController::class, 'editProfile'])->name('editProfile');
 });
