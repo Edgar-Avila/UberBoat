@@ -56,7 +56,18 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col flex-grow">
+        <div class="flex flex-col flex-grow relative">
+            @if (Auth::user()->role->isDriver())
+                <div class="absolute bottom-2 left-2 px-2 py-1 z-50 bg-white text-xs opacity-75 rounded border">
+                    @if (\App\Models\Driver::find(Auth::id())->available)
+                        <i class="fa fa-ship text-green-500" title="disponible"></i>
+                        <span>Estoy disponible!</span>
+                    @else
+                        <i class="fa fa-ship text-red-500" title="No disponible"></i>
+                        <span>No estoy disponible!</span>
+                    @endif
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>

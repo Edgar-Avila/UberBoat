@@ -10,6 +10,14 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @if(Cookie::get('theme') === 'dark')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+        <style>
+            div:where(.swal2-container) .swal2-html-container {
+                color: #e1e1e1 !important;
+            }
+        </style>
+    @endif
     @vite('resources/css/app.css')
     @stack('styles')
 </head>
@@ -29,6 +37,8 @@
         })
     </script>
 @endif
+
+@vite('resources/js/app.js')
 @stack('scripts')
 
 </html>

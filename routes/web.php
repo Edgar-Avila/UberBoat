@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mapa', [MapController::class, 'index'])->name('map');
     Route::get('/perfil', [AuthController::class, 'profile'])->name('profile');
     Route::put('/perfil/editar', [AuthController::class, 'editProfile'])->name('editProfile');
+    Route::delete('/perfil/eliminar', [AuthController::class, 'deleteAccount'])->name('deleteAccount');
 });

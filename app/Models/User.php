@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
     ];
 
     /**
@@ -45,4 +46,16 @@ class User extends Authenticatable
         'password' => 'hashed',
         'role' => UserRole::class,
     ];
+
+    public function passenger()
+    {
+        if($this->role == UserRole::Driver) return null;
+        return $this->belongsTo(Passenger::class);
+    }
+
+    public function driver()
+    {
+        if($this->role == UserRole::Passenger) return null;
+        return $this->belongsTo(Driver::class, 'id', 'id');
+    }
 }

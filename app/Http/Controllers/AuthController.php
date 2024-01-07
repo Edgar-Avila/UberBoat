@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
+use App\Models\Driver;
+use App\Models\Passenger;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -28,8 +31,18 @@ class AuthController extends Controller
         $user->name = $valid['name'];
         $user->email = $valid['email'];
         $user->password = Hash::make($valid['password']);
-        $user->save();
-        return redirect()->route('login');
+        $passenger = new Passenger();
+
+        DB::transaction(function () use ($user, $passenger) {
+            $user->save();
+            $passenger->id = $user->id;
+            $passenger->save();
+        });
+        return redirect()
+            ->route('login')
+            ->with('swal-title', '¡Éxito!')
+            ->with('swal-msg', 'Tu cuenta ha sido creada')
+            ->with('swal-icon', 'success');
     }
 
     public function loginForm()
@@ -69,6 +82,8 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'string|max:255',
             'email' => 'string|max:255|unique:users,email,' . Auth::id(),
+            'description' => 'string|max:255|nullable',
+            'phone' => 'string|digits:9|numeric|nullable',
         ]);
 
         $user = User::find(Auth::id());
@@ -78,19 +93,50 @@ class AuthController extends Controller
         if ($request->has('email')) {
             $user->email = $request->input('email');
         }
+        $user->description = $request->input('description');
+        $user->phone = $request->input('phone');
         if ($request->has('passenger')) {
             $user->role = UserRole::Passenger;
         } else {
             $user->role = UserRole::Driver;
         }
+        $passenger = Passenger::find(Auth::id());
+        $driver = Driver::find(Auth::id());
 
-        $user->save();
-        
+        DB::transaction(function () use ($user, $passenger, $driver) {
+            $user->save();
+            if ($user->role->isPassenger() && !$passenger) {
+                $passenger = new Passenger();
+                $passenger->id = Auth::id();
+                $passenger->save();
+            } else if ($user->role->isDriver() && !$driver) {
+                $driver = new Driver();
+                $driver->id = Auth::id();
+                $driver->save();
+            }
+        });
 
         return redirect()
             ->route('profile')
             ->with('swal-title', '¡Éxito!')
             ->with('swal-msg', 'Tu perfil ha sido actualizado')
             ->with('swal-icon', 'success');
+    }
+
+    public function deleteAccount()
+    {
+        $user = User::find(Auth::id());
+        $passenger = Passenger::find(Auth::id());
+        $driver = Driver::find(Auth::id());
+        DB::transaction(function () use ($user, $passenger, $driver) {
+            $user->delete();
+            if ($passenger) {
+                $passenger->delete();
+            }
+            if ($driver) {
+                $driver->delete();
+            }
+        });
+        return redirect()->route('home');
     }
 }

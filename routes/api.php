@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\TripController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::post('/find-nearby-drivers', [TripController::class, 'findNearbyDrivers'])->name('findNearbyDrivers');
+    Route::put('/change-availability', [DriverController::class, 'changeAvailability'])->name('changeAvailability');
+    Route::put('/update-location', [TripController::class, 'updateLocation'])->name('updateLocation');
 });

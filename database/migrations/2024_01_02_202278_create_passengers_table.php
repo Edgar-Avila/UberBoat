@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('passengers', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
