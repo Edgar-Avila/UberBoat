@@ -75,7 +75,7 @@
         },
         {
             text: "tu solución de movilidad",
-            color: "green"
+            color: "#adff2f"
         }
     ]
 
@@ -101,19 +101,25 @@
 
 @if(Session::has('swal-msg') || Session::has('swal-title'))
 <script>
+    // Swal.fire({
+    //     icon: '{{ Session::has('
+    //     swal - icon ') ? Session::get('
+    //     swal - icon ') : '
+    //     success ' }}',
+    //     title: '{{ Session::has('
+    //     swal - title ') ? Session::get('
+    //     swal - title ') : '
+    //     ' }}',
+    //     text: '{{ Session::has('
+    //     swal - msg ') ? Session::get('
+    //     swal - msg ') : '
+    //     ' }}',
+    //     confirmButtonText: 'Aceptar'
+    // })
     Swal.fire({
-        icon: '{{ Session::has('
-        swal - icon ') ? Session::get('
-        swal - icon ') : '
-        success ' }}',
-        title: '{{ Session::has('
-        swal - title ') ? Session::get('
-        swal - title ') : '
-        ' }}',
-        text: '{{ Session::has('
-        swal - msg ') ? Session::get('
-        swal - msg ') : '
-        ' }}',
+        icon: '{{ Session::has("swal-icon") ? Session::get("swal-icon") : "success" }}',
+        title: '{{ Session::has("swal-title") ? Session::get("swal-title") : "" }}',
+        text: '{{ Session::has("swal-msg") ? Session::get("swal-msg") : "" }}',
         confirmButtonText: 'Aceptar'
     })
 </script>

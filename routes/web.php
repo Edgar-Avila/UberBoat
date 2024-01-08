@@ -6,6 +6,8 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\GoogleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,9 @@ Route::get('/iniciar-sesion',[AuthController::class, 'loginForm'])->name('login'
 Route::post('/registro', [AuthController::class, 'register']);
 Route::post('/iniciar-sesion',[AuthController::class, 'login']);
 Route::post('/tema', [ThemeController::class, 'toggleTheme'])->name('theme');
+
+Route::get('auth/google', [GoogleController::class, 'googlepage']);
+Route::get('auth/google/callback', [GoogleController::class, 'googlecallback']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/cerrar-sesion',[AuthController::class, 'logout'])->name('logout');

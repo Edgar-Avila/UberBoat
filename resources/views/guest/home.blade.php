@@ -16,7 +16,7 @@
                 navegable más alto del mundo!
                 Vive una experiencia inolvidable!
             </p>
-            <a class="btn btn-primary" href="{{ route('register') }}">Quiero saber más!</a>
+            <a class="btn btn-primary text-white" href="{{ route('register') }}">Quiero saber más!</a>
         </div>
     </div>
 </div>
