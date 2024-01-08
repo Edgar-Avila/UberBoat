@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="max-w-md mx-auto w-full py-12 px-4">
+    <div class="max-w-md mx-auto w-full py-10 px-4">
 
         <form method="POST" action="{{ route('editProfile') }}">
             @csrf
@@ -56,7 +56,7 @@
             @endif
 
             {{-- Role --}}
-            <label class="swap swap-flip my-4">
+            <label class="swap swap-flip my-4 w-full">
                 <input type="checkbox" name="passenger" {{ Auth::user()->role->isPassenger() ? 'checked' : '' }} />
                 <div class="swap-on">
                     <i class="fa fa-user fa-2x" aria-hidden="true"></i>

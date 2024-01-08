@@ -12,7 +12,7 @@
         @endif
 
         {{-- Email --}}
-        <label class="form-control w-full">
+        <label class="form-control w-full my-4">
             <div class="label">
                 <span class="label-text">Correo</span>
             </div>
@@ -20,7 +20,7 @@
         </label>
 
         {{-- Name --}}
-        <label class="form-control w-full">
+        <label class="form-control w-full mb-4">
             <div class="label">
                 <span class="label-text">Nombre Completo</span>
             </div>
@@ -28,7 +28,7 @@
         </label>
 
         {{-- Password --}}
-        <label class="form-control w-full">
+        <label class="form-control w-full mb-4">
             <div class="label">
                 <span class="label-text">Contraseña</span>
             </div>
@@ -36,7 +36,7 @@
         </label>
 
         {{-- Confirm --}}
-        <label class="form-control w-full">
+        <label class="form-control w-full mb-4">
             <div class="label">
                 <span class="label-text">Repite tu contraseña</span>
             </div>
@@ -44,7 +44,7 @@
         </label>
 
         {{-- Button --}}
-        <button class="btn btn-primary mt-2 w-full">
+        <button class="btn btn-primary w-full my-4 text-white">
             Registrarse
         </button>
         <div class="text-center">

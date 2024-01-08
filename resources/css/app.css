@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.typing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.input-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 42px;
+    background-color: white;
+    margin-left: 8px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+/* .input-cursor {
+    animation: blink 0.6s linear infinite alternate;
+} */
+
+.sentence {
+    position: relative;
+    white-space: pre-wrap; /* Permite ajustes de línea naturales y preserva espacios */
+}
+
+.sentence::before {
+    content: "\00a0";
+}
+.sentence::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 42px;
+    background-color: white;
+    vertical-align: bottom;
+    animation: blink 0.6s linear infinite alternate;
+    margin-left: 3px;
+}
